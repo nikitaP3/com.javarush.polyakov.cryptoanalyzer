@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 public class Main {
 
@@ -20,7 +16,7 @@ public class Main {
                 System.out.println("Menu - 1 \nEncode - 2 \nDecode - 3 \nBrute - 4 \nStatisticAnalyzer - 5 \nExit - 6");
                 int indexMenu = Integer.parseInt(reader.readLine());
                 String path, s;
-                int key;
+                int key, answer;
                 switch (indexMenu) {
                     case 1:
                         break;
@@ -30,7 +26,15 @@ public class Main {
                         System.out.println(KEY);
                         key = Integer.parseInt(reader.readLine());
                         s = new Cipher().encrypt(path, key);
-                        new FileManager().writeFile(s, Path.of("src/Files/encryptedText.txt"));
+                        System.out.println("Do you want to save file by yourself? / 1 - \"yes\", 2 - \"no\"");
+                        answer = Integer.parseInt(reader.readLine());
+                        if (answer == 1) {
+                            System.out.println("Enter path to file");
+                            new FileManager().writeFile(s, Path.of(reader.readLine()));
+                            System.out.println("file saved!");
+                        } else if (answer == 2) {
+                            new FileManager().writeFile(s, Path.of("src/files/encryptedText.txt"));
+                        }
                         break;
                     case 3:
                         System.out.println(PATH);
@@ -38,19 +42,43 @@ public class Main {
                         System.out.println(KEY);
                         key = Integer.parseInt(reader.readLine());
                         s = new Cipher().decrypt(path, key);
-                        new FileManager().writeFile(s, Path.of("src/Files/decryptedText.txt"));
+                        System.out.println("Do you want to save file by yourself? / 1 - \"yes\", 2 - \"no\"");
+                        answer = Integer.parseInt(reader.readLine());
+                        if (answer == 1) {
+                            System.out.println("Enter path to file");
+                            new FileManager().writeFile(s, Path.of(reader.readLine()));
+                            System.out.println("file saved!");
+                        } else if (answer == 2) {
+                            new FileManager().writeFile(s, Path.of("src/files/decryptedText.txt"));
+                        }
                         break;
                     case 4:
                         System.out.println(PATH);
                         path = new FileManager().readFile(Path.of(reader.readLine()));
                         s = new BruteForce().decryptByBruteForce(path);
-                        new FileManager().writeFile(s, Path.of("src/Files/decryptedByBruteForceText.txt"));
+                        System.out.println("Do you want to save file by yourself? / 1 - \"yes\", 2 - \"no\"");
+                        answer = Integer.parseInt(reader.readLine());
+                        if (answer == 1) {
+                            System.out.println("Enter path to file");
+                            new FileManager().writeFile(s, Path.of(reader.readLine()));
+                            System.out.println("file saved!");
+                        } else if (answer == 2) {
+                            new FileManager().writeFile(s, Path.of("src/files/decryptedByBruteForceText.txt"));
+                        }
                         break;
                     case 5:
                         System.out.println(PATH);
                         path = new FileManager().readFile(Path.of(reader.readLine()));
                         s = new StatisticalAnalyzer().decrypt(path);
-                        new FileManager().writeFile(s, Path.of("src/Files/decryptedByStatisticAnalyzerText.txt"));
+                        System.out.println("Do you want to save file by yourself? / 1 - \"yes\", 2 - \"no\"");
+                        answer = Integer.parseInt(reader.readLine());
+                        if (answer == 1) {
+                            System.out.println("Enter path to file");
+                            new FileManager().writeFile(s, Path.of(reader.readLine()));
+                            System.out.println("file saved!");
+                        } else if (answer == 2) {
+                            new FileManager().writeFile(s, Path.of("src/files/decryptedByStatisticAnalyzerText.txt"));
+                        }
                         break;
                     case 6:
                         return;
