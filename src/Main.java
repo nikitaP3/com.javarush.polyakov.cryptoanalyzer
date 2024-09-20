@@ -31,7 +31,7 @@ public class Main {
                         if (answer == 1) {
                             System.out.println("Enter path to file");
                             new FileManager().writeFile(s, Path.of(reader.readLine()));
-                            System.out.println("file saved!");
+                            System.out.println("File saved!");
                         } else if (answer == 2) {
                             new FileManager().writeFile(s, Path.of("src/files/encryptedText.txt"));
                         }
